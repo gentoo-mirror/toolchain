@@ -3,12 +3,12 @@ DEPEND=>=sys-devel/binutils-2.16.1 >=sys-apps/sed-4 sys-devel/gnuconfig sys-libs
 DESCRIPTION=The GNU Compiler Collection
 EAPI=5
 HOMEPAGE=http://gcc.gnu.org/
-IUSE=multislot regression-test vanilla altivec doc gcj awt hardened multilib objc objc-gc mudflap libssp objc++ +nls +nptl +cxx +fortran +openmp
+IUSE=multislot regression-test vanilla altivec debug doc gcj awt hardened multilib objc objc-gc mudflap libssp objc++ +nls +nptl +cxx +fortran +openmp
 LICENSE=GPL-3+ LGPL-2.1+ || ( GPL-3+ libgcc libstdc++ ) FDL-1.2+
 PDEPEND=>=sys-devel/gcc-config-1.7
 RDEPEND=sys-libs/zlib nls? ( virtual/libintl ) virtual/libiconv fortran? ( >=dev-libs/gmp-4.3.2 >=dev-libs/mpfr-2.4.2 )
 RESTRICT=strip
 SLOT=4.2.0-alpha20090325
 SRC_URI=ftp://gcc.gnu.org/pub/gcc/snapshots/4.2-20090325/gcc-4.2-20090325.tar.bz2
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	fixheadtails	c6fd1fc49c9dc11924f28a1406f251a0	flag-o-matic	c9602887773166fe300444712fc7ff98	gnuconfig	00a0530e40148c254cebb925df0e87ef	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	pax-utils	dfe060cb70d89757fde5c1ff8405e950	toolchain	d2515530c3c4c77e3fb8f79f7be2cc5c	toolchain-funcs	42408102d713fbad60ca21349865edb4	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	fixheadtails	c6fd1fc49c9dc11924f28a1406f251a0	flag-o-matic	c9602887773166fe300444712fc7ff98	gnuconfig	00a0530e40148c254cebb925df0e87ef	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	pax-utils	dfe060cb70d89757fde5c1ff8405e950	toolchain	79b0a1d1153c017995d50b2a739e9164	toolchain-funcs	42408102d713fbad60ca21349865edb4	versionator	cd0bcdb170807e4a1984115e9d53a26f
 _md5_=bc20ffe9f6c5f9c331f18d4fa241b135
