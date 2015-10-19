@@ -75,7 +75,6 @@ else
 	# Why SLOT 2.2 you ask yourself while sippin your tea ?
 	# Everyone knows 2.2 > 0, duh.
 	SLOT="2.2"
-	PROVIDE="virtual/libc"
 fi
 
 # General: We need a new-enough binutils for as-needed

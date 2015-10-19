@@ -39,7 +39,7 @@ DESCRIPTION="GNU libc6 (also called glibc2) C library"
 HOMEPAGE="http://www.gnu.org/software/libc/libc.html"
 LICENSE="LGPL-2"
 
-IUSE="build nptl nptlonly erandom hardened multilib selinux glibc-compat20 glibc-omitfp profile"
+IUSE="build nptl nptlonly hardened multilib selinux glibc-compat20 glibc-omitfp profile"
 
 export CBUILD=${CBUILD:-${CHOST}}
 export CTARGET=${CTARGET:-${CHOST}}
@@ -47,9 +47,6 @@ if [[ ${CTARGET} == ${CHOST} ]] ; then
 	if [[ ${CATEGORY/cross-} != ${CATEGORY} ]] ; then
 		export CTARGET=${CATEGORY/cross-}
 	fi
-fi
-if [[ ${CTARGET} == ${CHOST} ]] ; then
-	PROVIDE="virtual/libc"
 fi
 
 is_crosscompile() {
@@ -834,8 +831,6 @@ glibc_do_configure() {
 	popd > /dev/null
 	use glibc-compat20 && [[ -d glibc-compat ]] && ADDONS="${ADDONS},glibc-compat"
 
-	use erandom || myconf="${myconf} --disable-dev-erandom"
-
 	use glibc-omitfp && myconf="${myconf} --enable-omitfp"
 
 	[[ ${CTARGET//_/-} == *-softfloat-* ]] && myconf="${myconf} --without-fp"
@@ -1080,7 +1075,6 @@ src_unpack() {
 	cp "${FILESDIR}"/2.3.5/ssp.c sysdeps/unix/sysv/linux/ || die "could not find ssp.c"
 	rm -f "${WORKDIR}"/patches/2*
 	epatch "${FILESDIR}"/2.3.6/glibc-2.3.6-propolice-guard-functions.patch
-	epatch "${FILESDIR}"/2.3.5/glibc-2.3.5-frandom-detect.patch
 
 	# Glibc is stupid sometimes, and doesn't realize that with a
 	# static C-Only gcc, -lgcc_eh doesn't exist.

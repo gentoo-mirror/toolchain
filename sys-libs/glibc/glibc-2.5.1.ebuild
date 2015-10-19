@@ -49,9 +49,6 @@ if [[ ${CTARGET} == ${CHOST} ]] ; then
 		export CTARGET=${CATEGORY/cross-}
 	fi
 fi
-if [[ ${CTARGET} == ${CHOST} ]] ; then
-	PROVIDE="virtual/libc"
-fi
 
 is_crosscompile() {
 	[[ ${CHOST} != ${CTARGET} ]]
