@@ -42,8 +42,6 @@ src_prepare() {
 			EPATCH_EXCLUDE="${FILESDIR}/${GCC_RELEASE_VER}/exclude" \
 			EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" epatch
 		fi
-
-		[[ ${CHOST} == ${CTARGET} ]] && epatch "${GCC_FILESDIR}"/gcc-spec-env-r1.patch
 	fi
 
 	# single-stage build for quick patch testing

@@ -31,8 +31,4 @@ src_prepare() {
 	EPATCH_EXCLUDE+=" 80_all_gcc-4.6-x32.patch"
 
 	toolchain_src_prepare
-
-	use vanilla && return 0
-
-	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
 }
