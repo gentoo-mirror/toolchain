@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding:utf-8 -*-
 
 """Utility funcs"""
 
@@ -14,7 +15,10 @@ import re
 import subprocess
 import sys
 import time
-import urlparse
+try:
+	import urlparse
+except ImportError:
+	import urllib.parse as urlparse
 
 
 dry_run = False
@@ -46,7 +50,12 @@ def list_snaps(url, debug=False):
 	return nlst
 
 
-ver_sort = lambda x: sorted(x, key=lambda v: distutils.version.LooseVersion(v))
+# Newer python distutils modules are crap and crash when you try to compare
+# something like "gdb-3.8.1" and "gdb-3.8-r1".  Filter out the -r# since we
+# don't need them for this code.  Even python 2 is crap and returns the wrong
+# result.
+ver_filter = re.compile(r'(-r[0-9]+)?([.]ebuild)?$')
+ver_sort = lambda x: sorted(x, key=lambda v: distutils.version.LooseVersion(ver_filter.sub('', v)))
 
 
 def run(cmd, **kwargs):

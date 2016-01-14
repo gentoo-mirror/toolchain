@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding:utf-8 -*-
 
 """Update gdb snapshots"""
 
@@ -21,22 +22,20 @@ URL = 'ftp://sourceware.org/pub/gdb/snapshots/current/'
 
 def main(argv):
 	opts = common_main(argv, CATEGORY, PN)
+	ver_match = re.compile(r'%s-weekly-([0-9.]+)\.tar' % PN)
 
-	remote_list = ver_sort(
-		x for x in list_snaps(URL, debug=opts.debug)
-		if x.startswith('%s-weekly-' % PN) and '.tar' in x)
+	all_snaps = list_snaps(URL, debug=opts.debug)
+	snaps = [x for x in all_snaps if ver_match.match(x)]
+	remote_list = ver_sort(snaps)
 
 	# Create the lists of curr/new versions.
 	old_pkgs = set(glob.glob('%s-*.ebuild' % PN))
 	new_pkgs = set()
 	for snap in remote_list:
-		m = re.match(r'%s-weekly-([0-9.]+)\.tar' % PN, snap)
-		if m:
-			ebuild = '%s-%s.ebuild' % (PN, m.group(1))
-			new_pkgs.add(ebuild)
-			logging.debug('found remote %s', ebuild)
-		else:
-			logging.warning('skipping reomte %s', snap)
+		m = ver_match.match(snap)
+		ebuild = '%s-%s.ebuild' % (PN, m.group(1))
+		new_pkgs.add(ebuild)
+		logging.debug('found remote %s', ebuild)
 
 	# Create ebuilds for the new versions we found.
 	closest_ver = distutils.version.LooseVersion('0')
