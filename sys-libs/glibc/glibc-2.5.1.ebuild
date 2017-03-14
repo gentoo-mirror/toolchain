@@ -1,6 +1,5 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/Attic/glibc-2.5.1.ebuild,v 1.11 2011/03/20 22:22:24 vapier dead $
 
 # Here's how the cross-compile logic breaks down ...
 #  CTARGET - machine that will target the binaries
