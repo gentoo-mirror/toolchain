@@ -23,11 +23,11 @@ src_prepare() {
 	if has_version '<sys-libs/glibc-2.12' ; then
 		ewarn "Your host glibc is too old; disabling automatic fortify."
 		ewarn "Please rebuild gcc after upgrading to >=glibc-2.12 #362315"
-		EPATCH_EXCLUDE+=" 10_all_default-fortify-source.patch"
+		rm "${WORKDIR}"/patch/10_all_default-fortify-source.patch || die
 	fi
 
 	# drop the x32 stuff once 4.7 goes stable
-	EPATCH_EXCLUDE+=" 80_all_gcc-4.6-x32.patch"
+	rm "${WORKDIR}"/patch/80_all_gcc-4.6-x32.patch || die
 
 	toolchain-legacy_src_prepare
 }

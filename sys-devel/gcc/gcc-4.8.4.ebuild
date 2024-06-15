@@ -36,7 +36,8 @@ src_prepare() {
 	if has_version '<sys-libs/glibc-2.12' ; then
 		ewarn "Your host glibc is too old; disabling automatic fortify."
 		ewarn "Please rebuild gcc after upgrading to >=glibc-2.12 #362315"
-		EPATCH_EXCLUDE+=" 10_all_default-fortify-source.patch"
+
+		rm "${WORKDIR}"/patch/10_all_default-fortify-source.patch || die
 	fi
 
 	toolchain-legacy_src_prepare
